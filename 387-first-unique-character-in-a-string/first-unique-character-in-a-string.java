@@ -9,7 +9,7 @@ class Solution {
 
         
         for (int i = 0; i < s.length(); i++) {
-            if (m.get(s.charAt(i)).equals(1))  return i;
+            if (m.get(s.charAt(i)) == 1)  return i;
         }
 
         return -1;
