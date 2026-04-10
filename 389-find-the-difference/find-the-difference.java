@@ -4,9 +4,11 @@ class Solution {
     // check freq
     // varying -> new char?
     // loop, remove chars feq, if < 0 -> that is added char
+
+    // Inefficient - O(n) time + O(2n) = O(n) auxilliary space
     public char findTheDifference(String s, String t) {
         Map<Character, Integer> m = new HashMap<>(); // chached chars
-        Map<Character, Integer> n = new HashMap<>();
+        // Map<Character, Integer> n = new HashMap<>();
 
         for (int i = 0; i < s.length(); i++) {
             if (!m.containsKey(s.charAt(i))) {
@@ -16,21 +18,31 @@ class Solution {
             }
         }
 
-
         for (int i = 0; i < t.length(); i++) {
-            if (!n.containsKey(t.charAt(i))) {
-                n.put(t.charAt(i), 0);
+            if (!m.containsKey(t.charAt(i))) {
+                return t.charAt(i);
             } else {
-                n.put(t.charAt(i), n.get(t.charAt(i)) + 1);
+                if (m.get(t.charAt(i)) < 0) return t.charAt(i);
+
+                m.put(t.charAt(i), m.get(t.charAt(i)) - 1);
             }
         }
 
-        for (Map.Entry<Character, Integer> entry: n.entrySet()) {
-            char _t = entry.getKey();
 
-            if (!m.containsKey(_t)) return _t;
-            else if (m.get(_t) != entry.getValue()) return _t;
-        }
+        // for (int i = 0; i < t.length(); i++) {
+        //     if (!n.containsKey(t.charAt(i))) {
+        //         n.put(t.charAt(i), 0);
+        //     } else {
+        //         n.put(t.charAt(i), n.get(t.charAt(i)) + 1);
+        //     }
+        // }
+
+        // for (Map.Entry<Character, Integer> entry: n.entrySet()) {
+        //     char _t = entry.getKey();
+
+        //     if (!m.containsKey(_t)) return _t;
+        //     else if (m.get(_t) != entry.getValue()) return _t;
+        // }
 
         return t.charAt(0);
         
