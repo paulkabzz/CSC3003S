@@ -7,13 +7,14 @@ class Solution {
             if (!m.containsKey(nums[i])) {
                 m.put(nums[i], 1);
             } else {
-                m.put(nums[i], m.get(nums[i]) + 1);
+                res.add(nums[i]);
+                // m.put(nums[i], m.get(nums[i]) + 1);
             }
         }
 
-        for (Map.Entry<Integer, Integer> e: m.entrySet()) {
-            if (e.getValue() == 2)  res.add(e.getKey());
-        }
+        // for (Map.Entry<Integer, Integer> e: m.entrySet()) {
+        //     if (e.getValue() == 2)  res.add(e.getKey());
+        // }
 
         return res;
 
