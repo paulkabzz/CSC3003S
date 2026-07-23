@@ -44,13 +44,8 @@ class Solution {
 
         }
 
-        String[] res = new String[l.size()];
 
-        for (int i = 0; i < l.size(); i++) {
-            res[i] = l.get(i);
-        }
-
-        return res;
+        return l.toArray(new String[0]);
         
     }
 }
