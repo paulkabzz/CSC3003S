@@ -46,10 +46,7 @@ class Solution:
 
         # advance the head to shoft its starting position to the next node after the dummy 0 node
 
-        head = head.next if head.next is not None else head
-
-        
-        return head
+        return head.next if head.next is not None else head
 
 
 
