@@ -8,16 +8,14 @@ class Solution {
 
         while (r < s.length()) {
             if (set.contains(s.charAt(r))) {
-                set.clear();
-                l++;
-                r = l;               
+                set.remove(s.charAt(l));
+                l++;               
             } else {
                  set.add(s.charAt(r));
                  r++;
             }
             cnt = Math.max(r - l, cnt);
 
-            // r++;
         }
         return  cnt;
         
