@@ -13,8 +13,9 @@ class Solution {
             } else {
                  set.add(s.charAt(r));
                  r++;
+                cnt = Math.max(r - l, cnt);
+
             }
-            cnt = Math.max(r - l, cnt);
 
         }
         return  cnt;
