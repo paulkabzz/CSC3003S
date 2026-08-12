@@ -3,13 +3,13 @@ class Solution {
         HashMap<Integer, Integer> m = new HashMap<>();
 
         for (int i = 0; i < nums.length; i++) {
-            m.put(nums[i], i);
-        }
-
-        for (int i = 0; i < nums.length; i++) {
             int comp = target - nums[i];
 
-            if (m.containsKey(comp) && i != m.get(comp)) return new int[] {i, m.get(comp)};
+            if (m.containsKey(comp) && i != m.get(comp)) {
+                return new int[] {i, m.get(comp)};
+            } else {
+                m.put(nums[i], i);
+            };
 
         }
         return new int[] {0, 0};
