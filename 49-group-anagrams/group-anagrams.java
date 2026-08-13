@@ -21,7 +21,9 @@ class Solution {
         HashMap<String, ArrayList<String>> m = new HashMap<>();
 
         for (String s: strs) {
-            String key = makeKey(s);
+            char[] c = s.toCharArray();
+             Arrays.sort(c);
+            String key = new String(c);
             m.putIfAbsent(key, new ArrayList<>());
             m.get(key).add(s);
         }
