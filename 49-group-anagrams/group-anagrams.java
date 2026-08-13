@@ -24,9 +24,7 @@ class Solution {
         for (String s: strs) {
             String key = makeKey(s);
             if (!m.containsKey(key)) {
-                ArrayList<String> l = new ArrayList<>();
-                l.add(s);
-                m.put(key, l);
+                m.put(key, new ArrayList<>(Arrays.asList(s)));
             } else {
                 ArrayList<String> l = m.get(key);
                 l.add(s);
@@ -34,11 +32,7 @@ class Solution {
             }
         }
 
-        for (Map.Entry<String, ArrayList<String>> entries: m.entrySet()) {
-            res.add(entries.getValue()) ;
-        }
-
-        return res;
+        return new ArrayList(m.values());
         
     }
 }
