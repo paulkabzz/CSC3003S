@@ -5,8 +5,7 @@ class Solution {
         StringBuilder sb = new StringBuilder();
 
         for (int i = 0; i < s.length(); i++) {
-            int idx = s.charAt(i) - 97;
-            k[idx] = k[idx] + 1;
+            k[s.charAt(i) - 97]++;
         }
 
         for (int n: k) {
