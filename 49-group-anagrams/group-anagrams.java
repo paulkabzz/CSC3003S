@@ -1,35 +1,44 @@
 class Solution {
+    public String makeKey(String s) {
+        int[] k = new int[26];
 
-    private String getkey(String s) {
         StringBuilder sb = new StringBuilder();
-        int[] freq = new int[26];
 
-         for (int j = 0; j < s.length(); j++) {
-             freq[s.charAt(j) - 'a']++;
-         }
+        for (int i = 0; i < s.length(); i++) {
+            int idx = s.charAt(i) - 97;
+            k[idx] = k[idx] + 1;
+        }
 
-         for (int i = 0; i < freq.length; i++) {
-            sb.append("-"+freq[i]);
-         }
+        for (int n: k) {
+            sb.append(n + "-");
+        }
 
-        return sb.toString(); 
+        return sb.toString();
     }
-
     public List<List<String>> groupAnagrams(String[] strs) {
-        Map<String, ArrayList<String>> map = new HashMap<>();
+
         List<List<String>> res = new ArrayList<>();
 
-        for (int i = 0; i < strs.length; i++) {
-            String key = getkey(strs[i]);
-            if (!map.containsKey(key)) {
-                map.put(key, new ArrayList<String>(Arrays.asList(strs[i])));
+        HashMap<String, ArrayList<String>> m = new HashMap<>();
+
+        for (String s: strs) {
+            String key = makeKey(s);
+            if (!m.containsKey(key)) {
+                ArrayList<String> l = new ArrayList<>();
+                l.add(s);
+                m.put(key, l);
             } else {
-                ArrayList<String> val = map.get(key);
-                val.add(strs[i]);
-                map.put(key, val);
+                ArrayList<String> l = m.get(key);
+                l.add(s);
+                m.put(key, l);
             }
         }
 
-        return new ArrayList(map.values());
+        for (Map.Entry<String, ArrayList<String>> entries: m.entrySet()) {
+            res.add(entries.getValue()) ;
+        }
+
+        return res;
+        
     }
 }
