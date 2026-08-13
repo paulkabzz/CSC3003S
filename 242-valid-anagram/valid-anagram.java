@@ -1,34 +1,34 @@
 class Solution {
-    
-    private HashMap<Character, Integer> characterFreq(String s) {
-        HashMap<Character, Integer> freqMap = new HashMap<Character, Integer>();
-        for (int i = 0; i < s.length(); i++) {
-            if (!freqMap.containsKey(s.charAt(i))) {
-                freqMap.put(s.charAt(i), 1);
-            } else {
-                freqMap.put(s.charAt(i), freqMap.get(s.charAt(i))+1);
-            }
-        }
-        return freqMap;
-    }
-
     public boolean isAnagram(String s, String t) {
-        Map<Character, Integer> m1 = characterFreq(s.trim());
-        HashMap<Character, Integer> m2 = characterFreq(t.trim());
+
+        // store frequency of each character from s in map
+        // every time you come across that character in t, subtract from the freq
+        // if all chars have freq of 0, then valid anagrams
+
+        HashMap<Character, Integer> m = new HashMap<>();
 
         if (s.length() != t.length()) return false;
 
-        for (Map.Entry<Character, Integer> entry: m1.entrySet()) {
-
-            if (!m2.containsKey(entry.getKey())) return false;
-
-            if (entry.getValue().intValue() != m2.get(entry.getKey()).intValue()) {
-
-                return false;
-            };
-
+        for (int i = 0; i < s.length(); i++) {
+            if (!m.containsKey(s.charAt(i))) {
+                m.put(s.charAt(i), 1);
+            } else {
+                m.put(s.charAt(i), m.get(s.charAt(i)) + 1);
+            }
         }
 
+        for (int i = 0; i < t.length(); i++) {
+            if (m.containsKey(t.charAt(i))) {
+                m.put(t.charAt(i), m.get(t.charAt(i)) - 1);
+            }
+        }
+
+        for (Map.Entry<Character, Integer> entries: m.entrySet()) {
+            if (entries.getValue() > 0) return false;
+        }
         return true;
+
+        
+        
     }
 }
