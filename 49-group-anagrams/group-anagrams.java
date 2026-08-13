@@ -25,9 +25,7 @@ class Solution {
             if (!m.containsKey(key)) {
                 m.put(key, new ArrayList<>(Arrays.asList(s)));
             } else {
-                ArrayList<String> l = m.get(key);
-                l.add(s);
-                m.put(key, l);
+               m.get(key).add(s);
             }
         }
 
