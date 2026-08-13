@@ -1,7 +1,5 @@
 class Solution {
     public boolean isAnagram(String s, String t) {
-
-
         HashMap<Character, Integer> m = new HashMap<>();
 
         if (s.length() != t.length()) return false;
@@ -13,7 +11,7 @@ class Solution {
         for (int i = 0; i < t.length(); i++) {
             if (m.containsKey(t.charAt(i))) {
                 m.put(t.charAt(i), m.get(t.charAt(i)) - 1);
-            }
+            } else return false;
         }
 
         for (Map.Entry<Character, Integer> entries: m.entrySet()) {
