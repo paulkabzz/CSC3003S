@@ -22,11 +22,8 @@ class Solution {
 
         for (String s: strs) {
             String key = makeKey(s);
-            if (!m.containsKey(key)) {
-                m.put(key, new ArrayList<>(Arrays.asList(s)));
-            } else {
-               m.get(key).add(s);
-            }
+            m.putIfAbsent(key, new ArrayList<>());
+            m.get(key).add(s);
         }
 
         return new ArrayList(m.values());
