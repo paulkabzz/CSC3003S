@@ -11,12 +11,10 @@ class Solution {
         for (int i = 0; i < t.length(); i++) {
             if (m.containsKey(t.charAt(i))) {
                 m.put(t.charAt(i), m.get(t.charAt(i)) - 1);
+                if (m.get(t.charAt(i)) < 0) return false;
             } else return false;
         }
 
-        for (Map.Entry<Character, Integer> entries: m.entrySet()) {
-            if (entries.getValue() > 0) return false;
-        }
         return true;
 
         
