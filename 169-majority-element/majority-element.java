@@ -6,15 +6,12 @@ class Solution {
             m.putIfAbsent(n, 0);
             m.put(n, m.get(n) + 1);
         }
-        int max = 0;
 
         for (Map.Entry<Integer, Integer> e: m.entrySet()) {
-            if (e.getValue() > Math.floor(nums.length/2) ) {
-                max = e.getKey();
-            };
+            if (e.getValue() > Math.floor(nums.length/2) ) return e.getKey();
         }
 
-        return max;
+        return -1;
         
     }
 }
