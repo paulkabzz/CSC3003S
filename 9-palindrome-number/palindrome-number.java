@@ -7,13 +7,9 @@ class Solution {
         int temp = x;
 
         while (temp > 0) {
-
-            int digit = temp % 10;
-            y += digit;
-
+            y += (temp % 10);
             temp /= 10;
             y *= 10;
-
         }
 
         y /= 10;
