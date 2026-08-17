@@ -3,8 +3,8 @@ class Solution:
         s = list(set(nums))
         s.sort()
 
-        for i in range(len(s)):
-            nums[i] = s[i]            
+        for j in range(len(s)):
+            nums[j] = s[j]      
 
         return len(s)
         
