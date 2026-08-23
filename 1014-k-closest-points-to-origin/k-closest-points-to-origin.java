@@ -13,14 +13,10 @@ class Solution {
         int[][] r = new int[k][2];
 
         for (int i = 0; i < k; i++) {
-            int[] p = points[q.poll()];
-            r[i][0] = p[0];
-            r[i][1] = p[1];
+            r[i] = points[q.poll()];
         }
 
         return r;
-
-
         
     }
 }
