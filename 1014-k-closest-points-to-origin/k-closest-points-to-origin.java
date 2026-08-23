@@ -5,8 +5,7 @@ class Solution {
         PriorityQueue<Integer> q = new PriorityQueue<Integer>( (a, b) -> m.get(a).compareTo(m.get(b)));
 
         for (int i = 0; i < points.length; i++) {
-            double dist = Math.sqrt(Math.pow(points[i][0], 2) + Math.pow(points[i][1], 2));
-            m.put(i, dist);
+            m.put(i, Math.sqrt(Math.pow(points[i][0], 2) + Math.pow(points[i][1], 2)));
         }
 
         q.addAll(m.keySet());
