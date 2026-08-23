@@ -1,44 +1,27 @@
 class Solution {
-
-// Overall Time Complexity: O(nlogn)
-// Space Complexity: O(n) extra space
-
-    private double getDist(int[] point) {
-        double x = Math.pow((point[0]), 2);
-        double y = Math.pow((point[1]), 2);
-        return  Math.sqrt(x+y);
-    }
-
-    private int[] toIntArr(String[] s) {
-        int[] res = new int[s.length - 1];
-
-        for (int i = 0; i < res.length; i++) {
-            res[i] = Integer.parseInt(s[i]);
-        }
-
-        return res;
-    }
-
     public int[][] kClosest(int[][] points, int k) {
-        int[][] res = new int[k][2];
+        HashMap<Integer, Double> m  = new HashMap<>(); // store dist at idx i
+        // always keep shortest dist at top - min heap
+        PriorityQueue<Integer> q = new PriorityQueue<Integer>( (a, b) -> m.get(a).compareTo(m.get(b)));
 
-        Map<String, Double> m = new HashMap<>();
         for (int i = 0; i < points.length; i++) {
-            int[] key = {points[i][0], points[i][1], i}; 
-            m.put(Arrays.toString(key), getDist(points[i]));
+            double dist = Math.sqrt(Math.pow(points[i][0], 2) + Math.pow(points[i][1], 2));
+            m.put(i, dist);
         }
 
-        PriorityQueue<Map.Entry<String, Double>> q = new PriorityQueue<>(
-            Comparator.comparingDouble(Map.Entry::getValue)
-        );
+        q.addAll(m.keySet());
 
-        q.addAll(m.entrySet());
+        int[][] r = new int[k][2];
 
         for (int i = 0; i < k; i++) {
-            String p = q.poll().getKey();
-            res[i] = toIntArr(p.substring(1, p.length() - 1).split(", "));
+            int[] p = points[q.poll()];
+            r[i][0] = p[0];
+            r[i][1] = p[1];
         }
 
-        return res;
+        return r;
+
+
+        
     }
 }
