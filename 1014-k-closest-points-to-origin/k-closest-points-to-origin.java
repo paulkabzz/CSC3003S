@@ -1,19 +1,22 @@
 class Solution {
+    private int d(int[] a) {
+        return  (a[0]* a[0]) + (a[1] * a[1]);
+    }
     public int[][] kClosest(int[][] points, int k) {
-        HashMap<Integer, Double> m  = new HashMap<>(); // store dist at idx i
         // always keep shortest dist at top - min heap
-        PriorityQueue<Integer> q = new PriorityQueue<Integer>( (a, b) -> m.get(a).compareTo(m.get(b)));
+        PriorityQueue<int[]> q = new PriorityQueue<>( (a, b) -> d(b) - d(a));
 
         for (int i = 0; i < points.length; i++) {
-            m.put(i, Math.sqrt(Math.pow(points[i][0], 2) + Math.pow(points[i][1], 2)));
+            q.offer(points[i]);
+            if (q.size() > k) {
+                q.poll();
+            }
         }
-
-        q.addAll(m.keySet());
 
         int[][] r = new int[k][2];
 
         for (int i = 0; i < k; i++) {
-            r[i] = points[q.poll()];
+            r[i] = q.poll();
         }
 
         return r;
