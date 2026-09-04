@@ -37,11 +37,11 @@ class Algorithm {
         if (p.length() == 0) return 0;
 
         if (t.length() < p.length()) return -1;
-        for (size_t i = 0; i < t.length(); i++) {
+        for (size_t i = 0; i <  t.length() - p.length(); i++) {
 
             if (t[i] == p[0]) {
                 size_t j = 0;
-                while (j < p.length() && t[j + 1] == t[j]) {
+                while (j < p.length() && t[j + 1] == p[j]) {
                     j++;
                     if (j >= p.length() -1 ) return i;
 
