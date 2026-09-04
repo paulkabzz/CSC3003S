@@ -34,18 +34,22 @@ class Algorithm {
         // if found, iterate from p[1] to len(p) -1 and check if the chars match, if not, break out the loop
         // Time O(m * n)
 
-        if (p.length() == 0) return 0;
+        if (p.empty()) return 0;
 
         if (t.length() < p.length()) return -1;
-        for (size_t i = 0; i <  t.length() - p.length(); i++) {
+
+        
+        for (size_t i = 0; i <=  t.length() - p.length(); i++) {
 
             if (t[i] == p[0]) {
                 size_t j = 0;
-                while (j < p.length() && t[j + 1] == p[j]) {
-                    j++;
-                    if (j >= p.length() -1 ) return i;
 
+                while (j < p.length() && t[i + j] == p[j]) {
+                    j++;
                 }
+
+                if (j == p.length() ) return i;
+
             }
         }
 
@@ -91,8 +95,8 @@ int  main (void) {
 
     auto algorihtm = Algorithm();
 
-    // std::cout << algorihtm.indexOfFirstOccurance("aaaaaaaaaaaaaaaaaaaabaaa", "aaab") << std::endl;
-    std::cout << algorihtm.kthSmallestElement(n, 4) << std::endl;
+    std::cout << algorihtm.indexOfFirstOccurance("aaaaaaaaaaaaaaaaaaaabaaa", "aaab") << std::endl;
+    // std::cout << algorihtm.kthSmallestElement(n, 4) << std::endl;
 
 
     
