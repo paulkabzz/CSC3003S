@@ -6,7 +6,7 @@
 #include <iostream>
 #include <queue>
 #include <vector>
-
+#include <stdint.h>
 
 class Algorithm {
     private:
@@ -25,6 +25,25 @@ class Algorithm {
         //     this->T = T;
         //     this->P = P;
         // }
+    uint32_t sqrt(uint32_t n) {
+        // find the integer square root of any 32 bit number
+
+        uint32_t low = 0;
+        uint32_t high = 65535u; // max 32 bit integer square root
+
+        while (low <= high) {
+            uint32_t mid = low + (high - low)/2;
+
+            if ((uint64_t) mid * mid  < n) {
+                low = mid + 1;
+                
+            }
+
+            if ((uint64_t) mid * mid > n) high = mid - 1; 
+        }
+
+        return high;
+    }
 
     int indexOfFirstOccurance(std::string t, std::string p) {
         // give a string T, retunr the index of first ocurrance of string P in T. Return -1 if not found.
@@ -95,8 +114,10 @@ int  main (void) {
 
     auto algorihtm = Algorithm();
 
-    std::cout << algorihtm.indexOfFirstOccurance("aaaaaaaaaaaaaaaaaaaabaaa", "aaab") << std::endl;
+    // std::cout << algorihtm.indexOfFirstOccurance("aaaaaaaaaaaaaaaaaaaabaaa", "aaab") << std::endl;
     // std::cout << algorihtm.kthSmallestElement(n, 4) << std::endl;
+    std::cout << algorihtm.sqrt(10) << std::endl;
+
 
 
     
