@@ -3,7 +3,6 @@
 #include <queue>
 #include <algorithm>
 
-using namespace std;
 class Sort {
     // we'll have:
     // Bubble Sort, Mergee Sort, Heap Sort, Topological Sort, Quick Sort, Selection Sort, etc
@@ -24,7 +23,7 @@ class Sort {
         }
     }
 
-    void heap_sort(std::vector<int> & arr, std::priority_queue<int, vector<int>, std::greater<int>>& min_heap) {
+    void heap_sort(std::vector<int> & arr, std::priority_queue<int, std::vector<int>, std::greater<int>>& min_heap) {
         // I'll implement from scratch in subsequent activities, 
         // for now, I'll just use the builtin priority queue data structure to create a min heap.
         // we'll take in the arr by reference, so we can direclty modify it in place.
@@ -43,17 +42,54 @@ class Sort {
         }
     }
 
+    void insertion_sort(std::vector<int>& nums) {
+
+
+        for(size_t k = 1; k < nums.size(); k++) {
+            // kth element:
+            int target = nums[k]; // target to insert in sorted array
+            int j = k - 1; // 0 -> j contains the sorted elements
+
+            // iterate from j -> 0 ... those are our sorted elements, insert at right pos
+            // if out kth element (target) is less than arr[j] in arr[0...j], then update arr[j] = the kth element
+            // now where do we store the number we just swapped out??
+            // in temp var?
+            // how do we shift all items one to the right??
+
+            while (j >= 0 && nums[j] > target) {
+
+
+                // std::cout << target << " < " << nums[j] << std::endl;
+
+                // but here's the catch, nums[j + 1] = target, so we're modifying the target??
+                // but we do store a copy in a var, so it's ight i guess - we not modifying its reference
+                nums[j + 1] = nums[j];
+
+                j--;
+
+            }
+
+            nums[j + 1] = target;
+
+        }
+
+
+    }
+
 };
 
 int main(void) {
     Sort sort;
     std::vector<int> arr = {2, 3, 1, 2, 0, 3, 1, 2,4, 1,11, 4, 55};
-    std::priority_queue<int, vector<int>, std::greater<int>> min_heap;
+    std::priority_queue<int, std::vector<int>, std::greater<int>> min_heap;
 
-    sort.heap_sort(arr, min_heap);
+    // sort.heap_sort(arr, min_heap);
+    std::println("Array befor sorting: {}", arr);
 
-    for (auto i = 0; i < arr.size(); i++) {
-        std::cout << arr[i] << std::endl;
-    }
+
+    sort.insertion_sort(arr);
+
+    std::println("Array after sorting: {}", arr);
+
 
 }
