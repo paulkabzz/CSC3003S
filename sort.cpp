@@ -44,7 +44,8 @@ class Sort {
 
     void insertion_sort(std::vector<int>& nums) {
 
-
+        // Time: O(n^2)
+        // Space: O(1)
         for(size_t k = 1; k < nums.size(); k++) {
             // kth element:
             int target = nums[k]; // target to insert in sorted array
@@ -72,9 +73,46 @@ class Sort {
             nums[j + 1] = target;
 
         }
-
-
     }
+
+    void sort_by_parity(std::vector<int> & nums) {
+      // basically even numbers first, odd numbers last
+      size_t i = 0;
+      size_t j = nums.size() - 1;
+      while ( i < j ) {
+          if (nums[i] % 2 != 0) {
+              if (nums[j] % 2 == 0) {
+                  int temp = nums[i];
+                  nums[i] = nums[j];
+                  nums[j] = temp;
+              }
+              j--;
+          } else i++;
+      }
+    }
+
+    void sort_by_parity_ii(std::vector<int> & nums) {
+        // goal, nums[i] should be odd if i is odd. similarly, nums[i] should be even if i is even
+        size_t even_idx = 0;
+        size_t odd_idx = even_idx+1;
+
+        while (even_idx < nums.size() && odd_idx < nums.size()) {
+            if (nums[even_idx] % 2 != 0) {
+                // even index has odd element
+                if (nums[odd_idx] % 2 == 0) {
+                    // odd has even element
+                    int temp = nums[even_idx];
+                    nums[even_idx] = nums[odd_idx];
+                    nums[odd_idx] = temp;
+                } else {
+                    // odd has odd element?
+                    odd_idx+= 2;
+                }
+            } else even_idx +=2;
+        }
+      
+    }
+
 
 };
 
@@ -86,8 +124,7 @@ int main(void) {
     // sort.heap_sort(arr, min_heap);
     std::println("Array befor sorting: {}", arr);
 
-
-    sort.insertion_sort(arr);
+    sort.sort_by_parity_ii(arr);
 
     std::println("Array after sorting: {}", arr);
 
