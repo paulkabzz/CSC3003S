@@ -76,23 +76,17 @@ class Algorithm {
     }
 
     int kthSmallestElement(std::vector<int> n, unsigned int k) {
-        // Use min heap. The top k smallets items will laways be at the top. 
-        // That way, we remove the k-1 smallest elements and filanny return the element at the to -> k
-        // Overall time complexity: O(nlogn)
-        // create a min heap from n
+        // Overall time complexity: O(nlogk)
 
-        std::priority_queue<int, std::vector<int>, std::greater<int>> min_heap;
-
+        std::priority_queue<int, std::vector<int>, std::less<int>> max_heap;
 
         for (auto i = 0; i < n.size(); i++) {
-            min_heap.push(n[i]);
+            max_heap.push(n[i]);
+            if (max_heap.size() > k) max_heap.pop(); // remove largest element from the heap
+
         }
 
-        for (auto i = 0; i < k - 1; i++) {
-            min_heap.pop();
-        }
-
-        return min_heap.top(); // returns the item at the top of the heap
+        return max_heap.top(); // returns the item at the top of the heap - the kth smallest item.
     }
 
     int countBits(unsigned int n) {
@@ -115,8 +109,8 @@ int  main (void) {
     auto algorihtm = Algorithm();
 
     // std::cout << algorihtm.indexOfFirstOccurance("aaaaaaaaaaaaaaaaaaaabaaa", "aaab") << std::endl;
-    // std::cout << algorihtm.kthSmallestElement(n, 4) << std::endl;
-    std::cout << algorihtm.sqrt(10) << std::endl;
+    std::cout << algorihtm.kthSmallestElement(n, 2) << std::endl;
+    // std::cout << algorihtm.sqrt(10) << std::endl;
 
 
 
