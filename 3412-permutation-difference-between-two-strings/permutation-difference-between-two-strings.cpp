@@ -8,7 +8,7 @@ public:
             n[s[i] - 'a'] = i;
         }
         for (int i = 0; i < t.length(); i++) {
-            sum += std::abs(n[t[i] - 'a'] - i);
+            sum += std::abs(n[t[i] - 'a'] - i); 
         }
 
         delete[] n;
