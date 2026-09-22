@@ -6,7 +6,7 @@ class Solution {
                 cnt++;
             }
 
-            return ;
+            return (void) score;
         }
 
         // add
