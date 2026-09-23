@@ -13,7 +13,7 @@ class Solution {
 
             for (auto x: sub_set) {
                 x.push_back(last_int);
-                s.push_back(x);
+                s.push_back(x); 
             }
 
             for (const auto x: s) {
