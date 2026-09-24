@@ -21,7 +21,7 @@ class Solution {
             }
 
             for (auto x: s) {
-                std::sort(x.begin(), x.end());
+                std::sort(x.begin(), x.end()); 
 
                 if (!set.contains(x))
                 {   
